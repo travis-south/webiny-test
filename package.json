@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "webiny-cli": "node node_modules/webiny-cli/bin/webiny-cli.js"
+    },
+    "dependencies": {
+        "webiny-cli": "^1.2.9"
+    }
+}

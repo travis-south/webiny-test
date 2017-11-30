@@ -1,0 +1,7 @@
+Webiny:
+    EnvironmentType: development
+    Logger:
+        DisplayErrors: true
+        Enabled: false
+    WebUrl: 'http://localhost.dev:8000'
+    ApiUrl: 'http://localhost.dev:8000/api'

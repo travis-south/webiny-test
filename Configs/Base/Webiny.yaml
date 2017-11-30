@@ -1,0 +1,17 @@
+Webiny:
+    AbsolutePath: __DIR__/../../
+    Backend:
+        Path: /admin
+    I18n:
+        Enabled: true
+        Detect:
+            Locale: true
+    Acl:
+        Token: A_McXDBlEXrg0O6Gqmh79t6_FNdhWh5hvvD0CxEh
+        CheckUserPermissions: true
+        LogSystemApiTokenRequests: true
+        LogUserRequests: true
+        LogIncognitoRequests: false
+    Logger:
+        DisplayErrors: false
+        Enabled: true

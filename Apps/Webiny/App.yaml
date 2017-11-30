@@ -1,0 +1,120 @@
+Name: Webiny
+Version: 1.1.0
+Link: https://github.com/Webiny/Webiny
+Description: The Webiny app provides a platform to develop new apps
+Author:
+    Name: Webiny LTD
+    Email: info@webiny.com
+    Link: https://www.webiny.com
+
+Reports:
+    Wkhtmltopdf: autodetect
+
+Notifications:
+    Api: https://api.webiny.com
+    Intervals: # in minutes
+        WebinyNotifications: 60
+        MarketplaceAppVersions: 60
+
+Marketplace:
+    Api: https://api.webiny.com
+
+Storage:
+    Services:
+        Root:
+            Class: \Webiny\Component\Storage\Storage
+            Arguments:
+                Driver:
+                    Object: \Webiny\Component\Storage\Driver\Local\LocalStorageDriver
+                    ObjectArguments:
+                        Config:
+                            Directory: __DIR__/../..
+        Apps:
+            Class: \Webiny\Component\Storage\Storage
+            Arguments:
+                Driver:
+                    Object: \Webiny\Component\Storage\Driver\Local\LocalStorageDriver
+                    ObjectArguments:
+                        Config:
+                            Directory: __DIR__/..
+        Temp:
+            Class: \Webiny\Component\Storage\Storage
+            Arguments:
+                Driver:
+                    Object: \Webiny\Component\Storage\Driver\Local\LocalStorageDriver
+                    ObjectArguments:
+                        Config:
+                            Directory: __DIR__/../../Temp
+                            Create: true
+        DevelopmentBuild:
+            Class: \Webiny\Component\Storage\Storage
+            Arguments:
+                Driver:
+                    Object: \Webiny\Component\Storage\Driver\Local\LocalStorageDriver
+                    ObjectArguments:
+                        Config:
+                            Directory: __DIR__/../../public_html/build/development
+        ProductionBuild:
+            Class: \Webiny\Component\Storage\Storage
+            Arguments:
+                Driver:
+                    Object: \Webiny\Component\Storage\Driver\Local\LocalStorageDriver
+                    ObjectArguments:
+                        Config:
+                            Directory: __DIR__/../../public_html/build/production
+        Files:
+            Class: \Webiny\Component\Storage\Storage
+            Arguments:
+                Driver:
+                    Object: \Webiny\Component\Storage\Driver\Local\LocalStorageDriver
+                    ObjectArguments:
+                        Config:
+                            Directory: __DIR__/../../public_html/uploads
+                            PublicUrl: __Webiny.WebUrl__/uploads
+                            DateFolderStructure: true
+                            Create: true
+
+Events:
+    Webiny:
+        Bootstrap:
+            Request:
+                - {Handler: Php/RequestHandlers/Api, Priority: 600}
+                - {Handler: Php/RequestHandlers/Routes, Priority: 390}
+        Api:
+            Before:
+                - {Handler: Php/RequestHandlers/ApiHandlers/ApiLogHandler, Priority: 500}
+                - {Handler: Php/RequestHandlers/ApiHandlers/ApiCacheHandler::cacheRead}
+            Request:
+                - {Handler: Php/RequestHandlers/ApiHandlers/DiscoverHandler}
+                - {Handler: Php/RequestHandlers/ApiHandlers/EntityHandler}
+                - {Handler: Php/RequestHandlers/ApiHandlers/ServiceHandler}
+            After:
+                - {Handler: Php/RequestHandlers/ApiHandlers/ReportHandler, Priority: 301}
+                - {Handler: Php/RequestHandlers/ApiHandlers/ApiCacheHandler::cacheSave, Priority: 300}
+        User:
+            Provide:
+                - {Handler: Php/Lib/UserProvider/UserProviderEventHandler}
+Services:
+    SmartyExtension:
+        Class: \Apps\Webiny\Php\View\SmartyExtension
+        Tags: [Smarty.Extension]
+
+    AnalyticsDb:
+        Class: \Webiny\AnalyticsDb\AnalyticsDb
+        Arguments:
+            Mongo: "@Mongo.Webiny"
+    Hrc:
+        Class: \Webiny\Hrc\Hrc
+        Arguments:
+            CacheRules: []
+            CacheStorage:
+                Object: \Webiny\Hrc\CacheStorage\Mongo
+                ObjectArguments: ["@Mongo.Webiny"]
+            IndexStorage:
+                Object: \Webiny\Hrc\IndexStorage\Mongo
+                ObjectArguments: ["@Mongo.Webiny"]
+
+Routes:
+    Root:
+        Path: /
+        Callback: Php/RequestHandlers/Welcome

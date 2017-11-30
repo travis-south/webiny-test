@@ -1,0 +1,12 @@
+#################
+## WebinyPlatform
+#################
+.idea
+Cache/
+Temp/
+node_modules/
+data/
+vagrant/
+vendor/
+public_html/build/
+public_html/uploads/

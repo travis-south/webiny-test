@@ -1,0 +1,5 @@
+Webiny:
+    EnvironmentType: development
+    Logger:
+        DisplayErrors: true
+        Enabled: false

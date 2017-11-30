@@ -1,0 +1,17 @@
+{
+    "lastRun": {
+        "apps": [
+            "Webiny.Backend",
+            "Webiny.Core",
+            "Webiny.Skeleton",
+            "Webiny.Ui"
+        ],
+        "host": ""
+    },
+    "cli": {
+        "environment": "docker",
+        "host": "linux",
+        "domain": "http://localhost.dev",
+        "port": "8002"
+    }
+}

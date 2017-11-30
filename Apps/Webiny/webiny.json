@@ -1,0 +1,20 @@
+{
+    "cli": {
+        "plugins": [
+            "./Cli/Api",
+            "./Cli/InstallApp",
+            "./Cli/InstallDevApp",
+            "./Cli/Develop",
+            "./Cli/Build",
+            "./Cli/RunTests",
+            "./Cli/ReleaseArchive",
+            "./Cli/Deploy",
+            "./Cli/SwitchRelease",
+            "./Cli/ServerHelp",
+            "./Cli/Overrides",
+            "./Cli/Setup",
+            "./Cli/CreateAdmin",
+            "./Cli/Exit"
+        ]
+    }
+}

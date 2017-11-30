@@ -1,0 +1,19 @@
+{
+    "name": "webiny/webiny",
+    "type": "webiny-app",
+    "require": {
+        "webiny/app-installer": "^1",
+        "webiny/framework": "^1.6",
+        "webiny/login": "^1",
+        "webiny/analytics-db": "^1",
+        "webiny/hrc": "^1",
+        "mikehaertl/phpwkhtmltopdf": "^2.0@dev",
+        "league/csv": "^7.1@dev",
+        "phpzip/phpzip": "^2.0.8",
+        "php-curl-class/php-curl-class": "^7",
+        "robthree/twofactorauth": "^1",
+        "composer/semver": "^1.4"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

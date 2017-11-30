@@ -1,0 +1,8 @@
+Js:
+    Backend:
+        Path: __Webiny.Backend.Path__
+    LogErrors: true
+    CheckUserRoles: __Webiny.Acl.CheckUserPermissions__
+    Api:
+        AggregateRequests: false
+        MaxRequests: 30

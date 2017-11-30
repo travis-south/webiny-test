@@ -1,0 +1,10 @@
+Mongo:
+    Services:
+        Webiny:
+            Class: \Webiny\Component\Mongo\Mongo
+            Arguments:
+                Uri: 'mongodb:27017'
+            Calls:
+                - [selectDatabase, [Webiny]]
+Entity:
+    Database: Webiny
